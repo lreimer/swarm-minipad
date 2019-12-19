@@ -1,0 +1,14 @@
+[
+  {
+    "namespace": "default",
+    "mode": "DYNAMIC",
+    "deployments": []
+  },
+  {
+    "namespace": "kube-system",
+    "mode": "STATIC",
+    "deployments": [
+      "coredns"
+    ]
+  }
+]
