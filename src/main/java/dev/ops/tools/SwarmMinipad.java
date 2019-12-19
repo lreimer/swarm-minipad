@@ -1,6 +1,9 @@
 package dev.ops.tools;
 
+import com.github.dockerjava.api.DockerClient;
+import com.github.dockerjava.core.DockerClientBuilder;
 import dev.ops.tools.midi.MidiSystemHandler;
+import dev.ops.tools.swarm.SwarmController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
@@ -31,11 +34,15 @@ class SwarmMinipad implements Runnable {
         MidiSystemHandler midiSystem = new MidiSystemHandler();
         midiSystem.infos();
 
-        SwarmMinipadController minipadController = new SwarmMinipadController(midiSystem);
+        DockerClient dockerClient = DockerClientBuilder.getInstance().build();
+        SwarmController swarmController = new SwarmController(dockerClient, configFile);
+
+        SwarmMinipadController minipadController = new SwarmMinipadController(midiSystem, swarmController);
         minipadController.initialize();
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             LOGGER.info("Shutdown Docker Swarm Minipad.");
+            swarmController.close();
             minipadController.close();
             midiSystem.destroy();
         }));

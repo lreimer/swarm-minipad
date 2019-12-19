@@ -1,8 +1,8 @@
 package dev.ops.tools;
 
-import dev.ops.tools.midi.LaunchpadColor;
 import dev.ops.tools.midi.LaunchpadDevice;
 import dev.ops.tools.midi.MidiSystemHandler;
+import dev.ops.tools.swarm.SwarmController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,12 +14,15 @@ public class SwarmMinipadController extends LaunchpadDevice {
     private static final Logger LOGGER = LoggerFactory.getLogger(SwarmMinipadController.class);
 
     private final MidiSystemHandler midiSystem;
+    private final SwarmController swarmController;
 
-    public SwarmMinipadController(MidiSystemHandler midiSystem) {
+    public SwarmMinipadController(MidiSystemHandler midiSystem, SwarmController swarmController) {
         this.midiSystem = midiSystem;
+        this.swarmController = swarmController;
     }
 
     public void initialize() {
+        swarmController.initialize();
         midiSystem.initialize(this);
         reset();
     }

@@ -1,14 +1,8 @@
 [
   {
-    "namespace": "default",
-    "mode": "DYNAMIC",
-    "deployments": []
+    "container": "nginx"
   },
   {
-    "namespace": "kube-system",
-    "mode": "STATIC",
-    "deployments": [
-      "coredns"
-    ]
+    "container": "busybox"
   }
 ]

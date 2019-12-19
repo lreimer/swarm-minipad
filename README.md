@@ -9,6 +9,11 @@ $ ./gradlew clean ass
 $ ./gradlew run --args="-f src/test/resources/swarm-config.json"
 ```
 
+## Configuration
+
+We are using the default configuration of the Docker Java Client. Different ways of
+configuration are found here: https://github.com/docker-java/docker-java
+
 ## Maintainer
 
 M.-Leander Reimer (@lreimer), <mario-leander.reimer@qaware.de>
