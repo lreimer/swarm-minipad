@@ -28,6 +28,12 @@ public class SwarmMinipadController extends LaunchpadDevice {
     }
 
     @Override
+    public void close() {
+        swarmController.close();
+        super.close();
+    }
+
+    @Override
     protected void handle(int command, int data1, int data2) {
         if (command == 176 && data2 == 127) {
             // a 1-8 button has been pressed

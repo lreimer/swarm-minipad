@@ -1,6 +1,7 @@
 package dev.ops.tools.swarm;
 
 import com.github.dockerjava.api.DockerClient;
+import com.github.dockerjava.core.DockerClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,12 +16,15 @@ public class SwarmController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SwarmController.class);
 
     private final DockerClient dockerClient;
+    private final SwarmConfig swarmConfig;
 
-    public SwarmController(DockerClient dockerClient, File configFile) {
-        this.dockerClient = dockerClient;
+    public SwarmController(File configFile) {
+        this.dockerClient = DockerClientBuilder.getInstance().build();
+        this.swarmConfig = SwarmConfig.fromFile(configFile);
     }
 
     public void initialize() {
+        LOGGER.info("Using Swarm configuration {}", swarmConfig);
     }
 
     public void close() {

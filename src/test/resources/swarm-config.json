@@ -1,8 +1,10 @@
-[
-  {
-    "container": "nginx"
+{
+  "labels": {
+    "app": "nginx",
+    "env": "test"
   },
-  {
-    "container": "busybox"
-  }
-]
+  "services": [
+    "nginx",
+    "busybox"
+  ]
+}
