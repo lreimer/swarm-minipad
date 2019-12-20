@@ -20,7 +20,7 @@ public class Service {
     private String id;
 
     @JsonProperty("Version")
-    private ServiceSpec version;
+    private ServiceVersion version;
 
     @JsonProperty("Spec")
     private ServiceSpec spec;
@@ -29,7 +29,7 @@ public class Service {
         return id;
     }
 
-    public ServiceSpec getVersion() {
+    public ServiceVersion getVersion() {
         return version;
     }
 

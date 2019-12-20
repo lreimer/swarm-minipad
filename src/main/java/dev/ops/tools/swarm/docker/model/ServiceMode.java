@@ -19,6 +19,10 @@ public class ServiceMode {
     @JsonProperty("Replicated")
     private ReplicatedMode replicated;
 
+    public void setReplicated(ReplicatedMode replicated) {
+        this.replicated = replicated;
+    }
+
     public ReplicatedMode getReplicated() {
         return replicated;
     }

@@ -119,9 +119,15 @@ public class SwarmController {
     }
 
     public void scale(SwarmService swarmService, int replicas) {
-        LOGGER.warn("NOT IMPLEMENTED: Scaling of Swarm service {} to {} replicas.", swarmServices, replicas);
+        int index = swarmServices.indexOf(swarmService);
+        Service service = services.get(index);
 
-        // int index = swarmServices.indexOf(swarmService);
-        // TODO implement service scale logic
+        try {
+            LOGGER.info("Scaling of Swarm {} to {} replicas.", service, replicas);
+            swarmClient.get().scaleServiceCmd(service.getId(), replicas).exec();
+        } catch (RuntimeException e) {
+            LOGGER.warn("Error scaling Swarm service.", e);
+        }
+
     }
 }

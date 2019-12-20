@@ -21,8 +21,16 @@ public class ServiceSpec {
     @JsonProperty("Mode")
     private ServiceMode mode;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setMode(ServiceMode mode) {
+        this.mode = mode;
     }
 
     public ServiceMode getMode() {

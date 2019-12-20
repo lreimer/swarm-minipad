@@ -47,6 +47,10 @@ public class SwarmClient implements DockerClient {
         return new ListServicesCmdImpl(dockerCmdExecFactory.createListServicesCmdExec());
     }
 
+    public ScaleServiceCmd scaleServiceCmd(String serviceId, Integer replicas) {
+        return new ScaleServiceCmdImpl(dockerCmdExecFactory.createScaleServicesCmdExec(), serviceId, replicas);
+    }
+
     @Override
     public AuthConfig authConfig() throws DockerException {
         return dockerClient.authConfig();

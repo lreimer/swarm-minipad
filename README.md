@@ -25,9 +25,6 @@ For development under MacOS the following worked for me:
 ```bash
 $ brew install socat
 $ socat -4 TCP-LISTEN:2375,fork UNIX-CONNECT:/var/run/docker.sock
-
-$ export DOCKER_HOST=tcp://localhost:2375
-$ export DOCKER_TLS_VERIFY=0
 ```
 
 ## Maintainer
