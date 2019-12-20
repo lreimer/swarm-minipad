@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * The model class for the Swarm configuration.
@@ -21,13 +20,13 @@ public class SwarmConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(SwarmConfig.class);
 
     private final Map<String, String> labels = new HashMap<>();
-    private final List<SwarmService> services = new ArrayList<>();
+    private final List<String> services = new ArrayList<>();
 
     public Map<String, String> getLabels() {
         return labels;
     }
 
-    public List<SwarmService> getServices() {
+    public List<String> getServices() {
         return services;
     }
 
@@ -56,8 +55,7 @@ public class SwarmConfig {
 
     private static void services(SwarmConfig config, JsonObject configObject) {
         if (configObject.containsKey("services")) {
-            List<SwarmService> services = configObject.getJsonArray("services").getValuesAs(JsonString::getString)
-                    .stream().map(SwarmService::new).collect(Collectors.toList());
+            List<String> services = configObject.getJsonArray("services").getValuesAs(JsonString::getString);
             config.services.addAll(services);
         }
     }

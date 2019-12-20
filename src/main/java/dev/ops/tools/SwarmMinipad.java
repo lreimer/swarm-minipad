@@ -9,6 +9,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Main application for the K8s Minipad.
@@ -17,6 +18,9 @@ import java.io.File;
 class SwarmMinipad implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SwarmMinipad.class);
+
+    @Option(names = {"-t", "--time"}, defaultValue = "10", description = "the refresh time in seconds")
+    private long time = 10;
 
     @Option(names = {"-f", "--file"}, paramLabel = "JSON_CONFIG", description = "the configuration file", required = true)
     private File configFile;
@@ -32,7 +36,7 @@ class SwarmMinipad implements Runnable {
         MidiSystemHandler midiSystem = new MidiSystemHandler();
         midiSystem.infos();
 
-        SwarmController swarmController = new SwarmController(configFile);
+        SwarmController swarmController = new SwarmController(configFile, time, TimeUnit.SECONDS);
         SwarmMinipadController minipadController = new SwarmMinipadController(midiSystem, swarmController);
         minipadController.initialize();
 

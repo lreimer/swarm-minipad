@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx:1.17.6-alpine
+    ports:
+      - "8000:80"
+    deploy:
+      labels:
+        - "dev.ops.tools.app=nginx"
+        - "dev.ops.tols.env=test"
+      mode: replicated
+      replicas: 2

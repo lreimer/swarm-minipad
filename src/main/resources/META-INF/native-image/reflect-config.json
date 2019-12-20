@@ -18,11 +18,13 @@
     "methods": [
       {
         "name": "loadLibraries",
-        "parameterTypes": []
+        "parameterTypes": [
+        ]
       },
       {
         "name": "readProperties",
-        "parameterTypes": []
+        "parameterTypes": [
+        ]
       }
     ]
   },
@@ -31,6 +33,51 @@
     "allDeclaredFields": true,
     "allDeclaredMethods": true,
     "allPublicMethods": true
+  },
+  {
+    "name": "dev.ops.tools.swarm.docker.model.ReplicatedMode",
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true,
+    "allPublicClasses": true
+  },
+  {
+    "name": "dev.ops.tools.swarm.docker.model.Service",
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true,
+    "allPublicClasses": true
+  },
+  {
+    "name": "dev.ops.tools.swarm.docker.model.ServiceMode",
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true,
+    "allPublicClasses": true
+  },
+  {
+    "name": "dev.ops.tools.swarm.docker.model.ServiceSpec",
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true,
+    "allPublicClasses": true
+  },
+  {
+    "name": "dev.ops.tools.swarm.docker.model.ServiceVersion",
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true,
+    "allPublicClasses": true
   },
   {
     "name": "org.glassfish.json.JsonProviderImpl",
@@ -102,7 +149,8 @@
     "methods": [
       {
         "name": "getContextClassLoader",
-        "parameterTypes": []
+        "parameterTypes": [
+        ]
       }
     ]
   },

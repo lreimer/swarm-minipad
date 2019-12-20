@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+        classpath 'com.github.docker-java:docker-java:3.0.1'
+    }
+}
+
 plugins {
     id 'java'
     id 'application'
@@ -30,6 +36,7 @@ dependencies {
 application {
     mainClassName = 'dev.ops.tools.SwarmMinipad'
     // applicationDefaultJvmArgs = ['-agentlib:native-image-agent=config-merge-dir=build/resources/main/META-INF/native-image']
+    // applicationDefaultJvmArgs = ['-DDOCKER_HOST=tcp://localhost:2375']
 }
 
 task copyRuntimeLibs(type: Copy) {
@@ -55,7 +62,9 @@ task extendReflectJson {
         def reflectJson = file("$buildDir/resources/main/META-INF/native-image/reflect-config.json")
         def json = new JsonSlurper().parseText(reflectJson.text)
 
-        // json << getReflectInfo("io.fabric8.kubernetes.internal.KubernetesDeserializer")
+        json << getReflectInfo('com.github.dockerjava.api.model.Info')
+        json << getReflectInfo('com.github.dockerjava.api.model.InfoRegistryConfig')
+        json << getReflectInfo('com.github.dockerjava.api.model.InfoRegistryConfig$IndexConfig')
 
         def extendedReflectJson = file("$buildDir/resources/main/META-INF/native-image/reflect-config.json")
         extendedReflectJson.write(new JsonBuilder(json).toPrettyString())
@@ -103,10 +112,10 @@ task graalNativeImage(description: 'Generate native image with GraalVM', depends
             '-H:+TraceClassInitialization',
             '--initialize-at-run-time=com.sun.media.sound,org.fusesource.jansi.WindowsAnsiOutputStream',
             '--no-server',
-            // '--static',
+            // '--static',                  // does not work under MacOS
             '--enable-http',
             '--enable-https',
-            '--force-fallback',
+            '--force-fallback',              // required, otherwise the MIDI devices are not found anymore
             'dev.ops.tools.SwarmMinipad',
             'swarm-minipad'
     ]
