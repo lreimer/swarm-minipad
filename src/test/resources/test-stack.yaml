@@ -8,6 +8,18 @@ services:
     deploy:
       labels:
         - "dev.ops.tools.app=nginx"
-        - "dev.ops.tols.env=test"
+        - "dev.ops.tools.env=test"
       mode: replicated
       replicas: 2
+  busybox:
+    image: busybox:1.31.1
+    command: ["sleep", "10"]
+    deploy:
+      labels:
+        - "dev.ops.tools.app=busybox"
+        - "dev.ops.tools.env=test"
+      mode: replicated
+      replicas: 4
+      restart_policy:
+        condition: any
+        delay: 5s

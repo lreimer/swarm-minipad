@@ -9,7 +9,7 @@
     "dockerHost": "tcp://localhost:2375",
     "labels": {
       "dev.ops.tools.app": "nginx",
-      "dev.ops.tols.env": "test"
+      "dev.ops.tools.env": "test"
     }
   }
 ]
