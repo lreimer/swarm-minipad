@@ -10,8 +10,7 @@ $ ./gradlew clean ass
 $ docker swarm init
 $ docker stack deploy --orchestrator swarm -c src/test/resources/test-stack.yaml test
 
-$ ./gradlew run --args="-f src/test/resources/swarm-config-all.json"
-$ ./gradlew run --args="-f src/test/resources/swarm-config-filtered.json"
+$ ./gradlew run --args="-f src/test/resources/swarm-config.json"
 ```
 
 ## Configuration

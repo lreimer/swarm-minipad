@@ -5,7 +5,9 @@ import com.github.dockerjava.api.command.*;
 import com.github.dockerjava.api.exception.DockerException;
 import com.github.dockerjava.api.model.AuthConfig;
 import com.github.dockerjava.api.model.Identifier;
+import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientBuilder;
+import com.github.dockerjava.core.DockerClientConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,9 +26,17 @@ public class SwarmClient implements DockerClient {
         this.dockerCmdExecFactory = dockerCmdExecFactory;
     }
 
-    public static SwarmClient build() {
-        DockerSwarmCmdExecFactory dockerCmdExecFactory = new DockerSwarmCmdExecFactory();
-        DockerClient dockerClient = DockerClientBuilder.getInstance()
+    public static SwarmClient build(String dockerHost) {
+        DockerClientConfig config = DefaultDockerClientConfig.createDefaultConfigBuilder()
+                .withDockerHost(dockerHost)
+                .withDockerTlsVerify(false)
+                .build();
+
+        DockerSwarmCmdExecFactory dockerCmdExecFactory = new DockerSwarmCmdExecFactory()
+                .withReadTimeout(5000)
+                .withConnectTimeout(5000);
+
+        DockerClient dockerClient = DockerClientBuilder.getInstance(config)
                 .withDockerCmdExecFactory(dockerCmdExecFactory)
                 .build();
 

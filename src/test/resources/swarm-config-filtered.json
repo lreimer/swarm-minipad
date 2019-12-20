@@ -1,9 +1,0 @@
-{
-  "labels": {
-    "dev.ops.tools.app": "nginx",
-    "dev.ops.tols.env": "test"
-  },
-  "services": [
-    "test_nginx"
-  ]
-}

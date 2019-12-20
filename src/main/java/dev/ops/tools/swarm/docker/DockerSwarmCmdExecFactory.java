@@ -10,4 +10,14 @@ public class DockerSwarmCmdExecFactory extends JerseyDockerCmdExecFactory {
     public ListServicesCmd.Exec createListServicesCmdExec() {
         return new ListServicesCmdExec(getBaseResource(), getDockerClientConfig());
     }
+
+    @Override
+    public DockerSwarmCmdExecFactory withReadTimeout(Integer readTimeout) {
+        return (DockerSwarmCmdExecFactory) super.withReadTimeout(readTimeout);
+    }
+
+    @Override
+    public DockerSwarmCmdExecFactory withConnectTimeout(Integer connectTimeout) {
+        return (DockerSwarmCmdExecFactory) super.withConnectTimeout(connectTimeout);
+    }
 }
